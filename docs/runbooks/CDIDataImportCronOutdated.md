@@ -112,5 +112,5 @@ for more information.
 If you cannot resolve the issue, see the following resources:
 
 - [OKD Help](https://www.okd.io/help/)
-- [#virtualization Slack channel](https://kubevirt.io/user-guide/cluster_admin/in)
+- [#virtualization Slack channel](https://kubernetes.slack.com/channels/virtualization)
 <!--USend-->
