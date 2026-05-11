@@ -4,19 +4,15 @@ reviews:
   profile: assertive
   high_level_summary: false
   high_level_summary_in_walkthrough: false
-  walkthrough: false
-  poem: false
-  review_status: false
   collapse_walkthrough: false
   changed_files_summary: false
   sequence_diagrams: false
-  estimated_effort_to_review: false
+  estimate_code_review_effort: false
   assess_linked_issues: false
   related_issues: false
   related_prs: false
   suggested_labels: false
   suggested_reviewers: false
-  enable_prompt_for_ai_agents: false
   auto_review:
     enabled: true
     drafts: false
@@ -58,11 +54,15 @@ reviews:
         operator-observability framework.
 
         IMPORTANT: The alert may not be merged yet — it may only exist in an
-        open pull request in the source repository. The runbook PR description
-        should contain a link to the alert PR. If the alert is not found on
-        the main branch, search open PRs in the linked repositories for the
-        alert name. If no alert definition can be found anywhere (neither
-        merged nor in an open PR), flag this clearly in the review.
+        open pull request in the source repository. Use ALL of these methods
+        to find the alert:
+        1. Search the main branch of all linked repositories
+        2. Check the PR description of THIS pull request — it may contain
+           a direct link to the alert PR in another repo. Follow that link
+           and read the alert definition from that PR's diff.
+        3. Search open PRs in the linked repositories for the alert name
+        If no alert definition can be found using any method, flag this
+        clearly in the review.
 
         Once found, identify:
         - The **PromQL expression** (`expr` field)
@@ -100,6 +100,8 @@ reviews:
 
         ---
         **Alert source code:** `<org>/<repo>` — `<file path>` (line <N>)
+        **Alert found in:** `<main branch>` or `<PR link>` (always
+        include the full GitHub URL to the file or PR where you found it)
         **Alert expr:** `<paste the FULL PromQL expression here>`
         **Alert `for`:** `<duration>`
         **Alert labels:** `severity=<val>`, `operator_health_impact=<val>`,
@@ -114,10 +116,9 @@ reviews:
 
         CRITICAL: Everything you report MUST come from reading the actual
         source code. Never guess, assume, or fabricate any value. If you
-        cannot find something in the code, say so explicitly.
-
-        If the alert was found in an open PR (not merged), add:
-        **Note:** Alert found in open PR: <PR URL>
+        cannot find something in the code, say so explicitly. Always
+        include the full GitHub URL (link to the file on main branch, or
+        link to the PR) so the reviewer can verify your findings.
 
         If the alert could not be found, state:
         **Alert source code:** NOT FOUND — cannot verify this runbook
@@ -194,6 +195,10 @@ knowledge_base:
         HyperConverged Cluster Operator (HCO). Contains alert definitions,
         recording rules, and metric definitions. Search this repo for
         any alert name.
+    - repository: avlitman/hyperconverged-cluster-operator
+      instructions: >
+        HCO. Contains alert definitions, recording rules, and metric
+        definitions. Search this repo for any alert name.
     - repository: kubevirt/ssp-operator
       instructions: >
         Scheduling, Scale, and Performance operator (SSP). Contains alert
